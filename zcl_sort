@@ -1,0 +1,20 @@
+CLASS  zcl_sort DEFINITION PUBLIC.
+
+PUBLIC SECTION.
+INTERFACES: if_amdp_marker_hdb.
+class-methods: get_data for TABLE FUNCTION z_sort.
+
+ENDCLASS.
+
+CLASS zcl_sort IMPLEMENTATION.
+
+method: get_data BY DATABASE FUNCTION FOR HDB LANGUAGE SQLSCRIPT OPTIONS READ-ONLY USING zemp_master zemp_salary.
+
+   RETURN
+      select zemp_master.mandt, zemp_master.emp_id, dept, total from zemp_master
+      left outer join zemp_salary on zemp_master.emp_id=zemp_salary.emp_id
+      order by total desc;
+
+ENDMETHOD.
+
+ENDCLASS.
