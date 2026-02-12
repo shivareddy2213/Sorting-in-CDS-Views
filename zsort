@@ -1,0 +1,8 @@
+@EndUserText.label: 'table function for sorting in decending order'
+define table function z_sort
+returns {
+mandt : mandt;
+emp_id : zemp_id;
+dept : zdept;
+total : ztotal;
+} implemented by method zcl_sort=>get_data;
